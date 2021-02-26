@@ -28,7 +28,7 @@ RSpec.describe AnimalsController, type: :controller do
     # variaves para eu usar: let
     let(:animal) { create(:animal) }
 
-    it 'should success and render to show page' do
+    it 'success and render to show page' do
       get :show, params: { id: animal.id }
       expect(response).to have_http_status 200
       expect(response).to render_template :show
@@ -42,13 +42,13 @@ RSpec.describe AnimalsController, type: :controller do
   end
 
   describe "GET /new" do
-    it 'should success and render to new page' do
+    it 'success and render to new page' do
       get :new
       expect(response).to have_http_status 200
       expect(response).to render_template :new
     end
 
-    it 'should new post' do
+    it 'new post' do
       get :new
       expect(assigns(:animal)).to be_a Animal
       expect(assigns(:animal)).to be_a_new Animal # verifica se é um novo registro
@@ -61,14 +61,14 @@ RSpec.describe AnimalsController, type: :controller do
     }
 
     # caminho feliz
-    it 'should create a new animal' do
+    it 'create a new animal' do
       post :create, params: { animal: params }
       expect(flash[:notice]).to eq('Animal was successfully created.')
       expect(response).to redirect_to action: :show, id: assigns(:animal).id
     end
 
     # caminho mau
-    it 'should not create a new animal' do
+    it 'not create a new animal' do
       params = { name: 'galinha' }
       post :create, params: { animal: params }
       expect(response).to render_template :new
@@ -79,7 +79,7 @@ RSpec.describe AnimalsController, type: :controller do
     let!(:animal) { create(:animal) }
 
     # caminho feliz
-    it 'should update animal info' do
+    it 'update animal info' do
       params = { name: 'Update name to animal' }
 
       put :update, params: { id: animal.id, animal: params }
@@ -91,7 +91,7 @@ RSpec.describe AnimalsController, type: :controller do
     end
 
     # caminho mau
-    it 'should not update animal info' do
+    it 'not update animal info' do
       params = { name: nil }
 
       put :update, params: { id: animal.id, animal: params }
@@ -103,7 +103,7 @@ RSpec.describe AnimalsController, type: :controller do
   describe 'GET #edit' do
     let!(:animal) { create(:animal) }
 
-    it 'should success and render edit page' do
+    it 'success and render edit page' do
       get :edit, params: { id: animal.id }
       expect(response).to render_template :edit
       expect(assigns(:animal)).to be_a Animal
@@ -113,7 +113,7 @@ RSpec.describe AnimalsController, type: :controller do
   describe 'DELETE #destroy' do
     let!(:animal) { create(:animal) }
 
-    it 'should delete animal' do
+    it 'delete animal' do
       delete :destroy, params: { id: animal.id }
 
       expect(flash[:notice]).to eq('Animal was successfully destroyed.')

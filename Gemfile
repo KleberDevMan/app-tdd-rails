@@ -34,6 +34,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.1' # criar objects de forma ágil
   gem 'database_cleaner-active_record', '~> 1.8' # manter o db de testes sempre limpo
   gem 'rails-controller-testing' # acessa os templates dos controllers
+
+  gem 'selenium-webdriver'#, '~> 3.142'#, '>= 3.142.7'
 end
 
 group :development do
@@ -55,6 +57,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -6,26 +6,32 @@ RSpec.feature "Animals", type: :feature do
       @animal = create(:animal)
     end
 
-    scenario 'should h1 tag' do
+    scenario 'h1 tag' do
       visit animals_path
       expect(page).to have_selector 'h1', text: 'Animals'
     end
 
-    scenario 'should one post' do
+    scenario 'one post' do
       visit animals_path
       expect(page).to have_content @animal.name # espero que a pagina tenha o seguinte conteudo
     end
 
-    scenario 'should destroy animal' do
+    scenario 'destroy animal', js: true do
       visit animals_path
-      click_link 'Destroy'
+
+      # tira um print html da tela, exibe e procegue com o teste
+      save_and_open_page
+
+      accept_alert do
+        click_link 'Destroy'
+      end
       expect(page).to have_content 'Animal was successfully destroyed.'
       expect(Animal.count).to eq(0)
     end
   end
 
   context 'GET /new' do
-    it 'should insert content in input' do
+    it 'insert content in input' do
       visit new_animal_path
       within 'form' do
         fill_in 'Name', with: 'Nome do animal' # preenche o name
@@ -38,7 +44,7 @@ RSpec.feature "Animals", type: :feature do
   end
 
   context 'GET /edit' do
-    it 'should update animal' do
+    it 'update animal' do
       animal = create :animal
       visit edit_animal_path animal
       within 'form' do
@@ -52,6 +58,5 @@ RSpec.feature "Animals", type: :feature do
       expect(page).to have_content 'Animal was successfully updated.'
     end
   end
-
 
 end
