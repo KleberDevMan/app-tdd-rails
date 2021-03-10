@@ -41,13 +41,4 @@ Rails.application.configure do
   # # MailCatcher
   # config.action_mailer.smtp_settings = { address: "localhost", port: 1026 }
 
-  # SendGrid
-  config.action_mailer.smtp_settings = {
-    user_name: 'klebersubcontas@gmail.com',
-    password: 'Arena@8080Arena@8080',
-    address: 'smtp.sendgrid.net',
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
 end
