@@ -6,6 +6,7 @@ Jacson Pires
 - double: create unexist methods
 - stub: define response from methods
 - mock: verify comportments
+- webmocks + VCR: They working in conjunction for record the HTTP requests in a file
 
 ##### FactoryBot
 - seem with fixtures (with db persistence)
